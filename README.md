@@ -3,3 +3,5 @@ Django Study Source
 
 ### 커리큘럼
 장고환경설정
+
+urlconf
