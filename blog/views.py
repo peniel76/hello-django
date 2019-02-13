@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
-
+import requests
+from bs4 import BeautifulSoup
 
 def index(request):
     return render(request, 'blog/index.html')
@@ -14,3 +15,11 @@ def articles_by_year(request, year):
     return HttpResponse(f'''
         {year}년도에 대한 목록
     ''')
+
+def naver_realtime_keywords(request):
+    res = requests.get("http://naver.com")
+    html = res.text
+    soup = BeautifulSoup(html, 'html.parser')
+    tag_list = soup.select('.PM_CL_realtimeKeyword_rolling .ah_k')
+    text = '<br/>\n'.join([tag.text for tag in tag_list])
+    return HttpResponse(text)
