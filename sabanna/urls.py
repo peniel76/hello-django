@@ -17,8 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from blog.views import index, hello_times
 
+from blog.views import articles_by_year
+
+from django.urls import register_converter
+from blog.converters import FourDigitYearConverter
+
+register_converter(FourDigitYearConverter, 'year')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/hello_times/<int:times>/', hello_times),
     path('', index),
+    path('articles/<year:year>/', articles_by_year),
 ]
