@@ -1,6 +1,6 @@
 import uuid
 from functools import lru_cache
-
+from djago.urls.converter import StringConverter
 
 class IntConverter:
     regex = '[0-9]+'
@@ -35,6 +35,8 @@ class UUIDConverter:
 class SlugConverter(StringConverter):
     regex = '[-a-zA-Z0-9_]+'
 
+class SlugUnicodeConverter(StringConverter):
+    regex = r'[-\w]+'
 
 class PathConverter(StringConverter):
     regex = '.+'

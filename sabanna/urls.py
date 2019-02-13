@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, register_converter
 from blog.views import index, hello_times, articles_by_year
 
-from blog.converters import FourDigitYearConverter
+from blog.converters import FourDigitYearConverter, SlugUnicodeConverter
 
 register_converter(FourDigitYearConverter, 'year')
 
