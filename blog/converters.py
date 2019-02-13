@@ -1,6 +1,6 @@
 import uuid
 from functools import lru_cache
-from djago.urls.converter import StringConverter
+#from django.urls.converter import StringConverter
 
 class IntConverter:
     regex = '[0-9]+'
