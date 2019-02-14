@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 import requests
+import os
 from bs4 import BeautifulSoup
 
 from io import BytesIO
@@ -62,7 +63,7 @@ def naver_blog_search(request):
 
 def 이미지생성응답(request):
     #ttf_path = 'C:/Windows/Fonts/malgun.ttf' # 윈도우, 맥:
-    ttf_path = 'assets/Fonts/AppleGothic.ttf'
+    ttf_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'assets/Fonts/AppleGothic.ttf') #'assets/Fonts/AppleGothic.ttf'
 
     image_url = 'http://www.flowermeaning.com/flower-pics/Calla-Lily-Meaning.jpg'
     #image_url = 'assets/images/s1.jpg'
