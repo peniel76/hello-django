@@ -4,6 +4,8 @@ from django.http import HttpResponse
 import requests
 from bs4 import BeautifulSoup
 
+from jinja2 import Template
+
 def index(request):
     return render(request, 'blog/index.html')
 
@@ -23,3 +25,34 @@ def naver_realtime_keywords(request):
     tag_list = soup.select('.PM_CL_realtimeKeyword_rolling .ah_k')
     text = '<br/>\n'.join([tag.text for tag in tag_list])
     return HttpResponse(text)
+
+def naver_blog_search(request):
+    query = request.GET.get('query')
+
+    url = 'https://search.naver.com/search.naver'
+
+    params = {
+        'where': 'post',
+        'sm': 'tab_jum',
+        'query': query,
+    }
+
+    res = requests.get(url, params=params)
+    html = res.text
+    soup = BeautifulSoup(html, 'html.parser')
+
+    tag_list = soup.select('#elThumbnailResultArea .sh_blog_title')
+
+    post_list = []
+    for tag in tag_list:
+        post_title = tag.text
+        post_url = tag['href']
+        post_list.append({
+            'title': post_title,
+            'url': post_url,
+        })
+
+    return render(request, 'blog/naver_blog_search.html', {
+        'query': query,
+        'post_list': post_list,
+    })
