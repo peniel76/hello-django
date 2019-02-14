@@ -4,8 +4,6 @@ from django.http import HttpResponse
 import requests
 from bs4 import BeautifulSoup
 
-from jinja2 import Template
-
 def index(request):
     return render(request, 'blog/index.html')
 
