@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponseRedirect
+
+def root(request):
+    # TODO: 차후에 URL Reverse 기능 검토 예정
+    return HttpResponseRedirect('/blog/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     path('shop/', include('shop.urls')),
+    path('', root),
 ]
