@@ -20,7 +20,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     author=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    ost=models.ForeignKey(Post, on_delete=models.CASCADE)
+    post=models.ForeignKey(Post, on_delete=models.CASCADE)
     author_name=models.CharField(max_length=100)
     message=models.TextField()
     create_at=models.DateTimeField(auto_now_add=True)

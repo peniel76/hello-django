@@ -13,4 +13,3 @@ class PostAdmin(admin.ModelAdmin):
         return post.contents[:20] + '...'
 
 admin.site.register(Comment)
-# Register your models here.
