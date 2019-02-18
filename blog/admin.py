@@ -1,6 +1,16 @@
 from django.contrib import admin
 from .models import Post, Comment
 
-admin.site.register(Post)
+#admin.site.register(Post)
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display=['id', 'title','short_content', 'is_publish', 'tags','create_at']
+    list_display_links=['title']
+    list_filter=['is_publish']
+    search_fields=['title']
+
+    def short_content(self, post):
+        return post.contents[:20] + '...'
+
 admin.site.register(Comment)
 # Register your models here.
