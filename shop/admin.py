@@ -9,4 +9,11 @@ class ShopAdmin(admin.ModelAdmin):
     list_display_links=['name']
     search_fields=['name']
 
-admin.site.register(Item)
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    list_display=['id','name', 'item_content']
+    list_display_links=['name']
+
+    def item_content(self, shop):
+        return shop.desc[:20] + '...'
+#admin.site.register(Item)
