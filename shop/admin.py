@@ -11,7 +11,7 @@ class ShopAdmin(admin.ModelAdmin):
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display=['id','name', 'item_content']
+    list_display=['shop', 'name', 'item_content', 'is_public', 'create_at']
     list_display_links=['name']
 
     def item_content(self, shop):
