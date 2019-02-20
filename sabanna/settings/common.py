@@ -59,7 +59,9 @@ ROOT_URLCONF = 'sabanna.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'sabanna', 'templates'),
+        ],    #프로젝트 전반에 사용할 template 경로를 지정
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
