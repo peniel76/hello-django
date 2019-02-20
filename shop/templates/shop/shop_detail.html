@@ -1,15 +1,16 @@
-<html>
-<head>
+{% extends "shop/layout.html" %}
 
-</head>
-<body>
-        <h1>{{ shop }}</h1>
+{% block content %}
+    <div class="container">
+        <div class="col-sm-12">
+            <h1>{{ shop }}</h1>
 
-        {{ shop.desc }} |
-        {{ shop.address }}
+            {{ shop.desc }} |
+            {{ shop.address }}
 
-        <hr/>
-        <a href="/shop/">목록으로</a>
-</body>
+            <hr/>
+            <a href="/shop/" class="btn btn-primary">목록으로</a>
+        </div>
+    </div>
 
-</html>
+{% endblock %}
