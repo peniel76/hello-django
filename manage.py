@@ -3,7 +3,7 @@ import os
 import sys
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sabanna.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sabanna.settings.dev')  #setting파일을 여러개 만들어서 여기서 변경하면 됨
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
