@@ -1,1 +1,1 @@
-web: DJANGO_SETTINGS_MODULE="askcompany.settings.prod_heroku" gunicorn sabanna.wsgi --log-file -
+web: DJANGO_SETTINGS_MODULE="sabanna.settings.prod_heroku" gunicorn sabanna.wsgi --log-file -
