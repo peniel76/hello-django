@@ -17,6 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponseRedirect
+from django.conf.urls.static import static
 
 def root(request):
     # TODO: 차후에 URL Reverse 기능 검토 예정
@@ -34,3 +35,6 @@ if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
+
+#media관련 파일 참조하도록
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
