@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 #from django.contrib.auth.models import User
 
@@ -11,6 +12,12 @@ class Shop(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        # return "/shop/{}/".format(self.id)
+        return reverse("shop:shop_detail", args=[self.id])
+        # return reverse("shop:shop_detail", kwargs={'pk': self.id})
+
 
 class Item(models.Model):
     shop=models.ForeignKey(Shop, on_delete=models.CASCADE)

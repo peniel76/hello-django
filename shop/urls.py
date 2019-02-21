@@ -5,11 +5,12 @@ from . import views
 app_name = 'shop'  # URL Reverse에 사용
 
 urlpatterns = [
-    path('', views.index),
-    path('<int:pk>/', views.shop_detail),
-    path('new/', views.shop_new),
-    path('new2/', views.shop_new_cbv),
-    path('<int:pk>/edit/', views.shop_edit),
-    path('<int:pk>/edit2/', views.shop_edit_cbv),
-    #path('<int:pk>/delete', views.shop_delete),
+    path('', views.index, name='index'),
+    path('<int:pk>/', views.shop_detail, name='shop_detail'),
+    path('new/', views.shop_new, name='shop_detail'),
+    path('new2/', views.shop_new_cbv, name='shop_new_cbv'),
+    path('<int:pk>/edit/', views.shop_edit, name='shop_edit'),
+    path('<int:pk>/edit2/', views.shop_edit_cbv, name='shop_edit_cbv'),
+    #path('<int:pk>/delete', views.shop_delete, name='shop_delete'),
+    #path('<int:pk>/delete/', views.shop_delete_cbv, name='shop_delete_cbv'),
 ]
