@@ -1,6 +1,7 @@
 {% extends "shop/layout.html" %}
 
 {% block content %}
+    <a href="/shop/new/" class="btn btn-primary">새 가게 등록</a>
     <div class="container">
         <div class="card-group">
             {% for shop in shop_list %}
@@ -34,4 +35,6 @@
             {% endfor %}
         </div>
     </div>
+
+    <a href="/shop/new/" class="btn btn-primary">새 가게 등록</a>
 {% endblock %}
