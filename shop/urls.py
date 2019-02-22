@@ -11,6 +11,6 @@ urlpatterns = [
     path('new2/', views.shop_new_cbv, name='shop_new_cbv'),
     path('<int:pk>/edit/', views.shop_edit, name='shop_edit'),
     path('<int:pk>/edit2/', views.shop_edit_cbv, name='shop_edit_cbv'),
-    #path('<int:pk>/delete', views.shop_delete, name='shop_delete'),
-    #path('<int:pk>/delete/', views.shop_delete_cbv, name='shop_delete_cbv'),
+    path('<int:pk>/delete/', views.shop_delete, name='shop_delete'),
+    path('<int:pk>/delete2/', views.shop_delete_cbv, name='shop_delete_cbv'),
 ]

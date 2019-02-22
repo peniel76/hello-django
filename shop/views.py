@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shop
 from .forms import ShopForm, ItemForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # def index(request):
@@ -11,7 +13,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 #         'shop_list':qs
 #     })
 
-index = ListView.as_view(model=Shop)
+#index = ListView.as_view(model=Shop)
 
 class PostListView(ListView):   # 확정시 용이함
     model = Shop
@@ -33,6 +35,7 @@ index = PostListView.as_view()
 
 shop_detail = DetailView.as_view(model=Shop)
 
+@login_required  #-> 장식자를 통해서 로그인 시에만 shop_new만 실행되도록 함
 def shop_new(request):
     form_cls = ShopForm
     form_cls2 = ItemForm
@@ -62,6 +65,7 @@ def shop_new(request):
 shop_new_cbv = CreateView.as_view(
     model=Shop, form_class=ShopForm) # get_absolute_url 적용됨
 
+@login_required
 def shop_edit(request, pk):
     # try:
     #     shop = Shop.objects.get(pk=pk)  #입력된 PK의 값을 가져옮
@@ -91,3 +95,18 @@ def shop_edit(request, pk):
 # models.py에서 해당 모델에 대한 get_absolute_URL이 정의되어 있으면 success_url이 없어도됨
 shop_edit_cbv = UpdateView.as_view(
     model=Shop, form_class=ShopForm) # get_absolute_url 적용됨
+
+@login_required
+def shop_delete(request, pk):
+    shop = get_object_or_404(Shop, pk=pk)
+
+    if request.method == 'POST':
+        shop.delete()
+        return redirect('shop:index')
+
+    return render(request, 'shop/shop_confirm_delete.html', {
+        'shop': shop,
+    })
+
+shop_delete_cbv = DeleteView.as_view(model=Shop,
+    success_url=reverse_lazy('shop:index'))

@@ -18,13 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponseRedirect
 from django.conf.urls.static import static
+from django.shortcuts import redirect
 
 def root(request):
     # TODO: 차후에 URL Reverse 기능 검토 예정
-    return HttpResponseRedirect('/blog/')
+    #return HttpResponseRedirect('/blog/')
+    return redirect('shop:index')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
     path('blog/', include('blog.urls')),
     path('shop/', include('shop.urls')),
     path('', root),

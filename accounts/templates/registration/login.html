@@ -1,0 +1,10 @@
+{% extends "shop/layout.html" %}
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <input type="submit" value="로그인" />
+    </form>
+{% endblock %}
